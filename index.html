@@ -12,9 +12,9 @@ import { FileText, GitBranch, Link2, Save, FolderOpen, Plus, Trash2, Search, Boo
  * "Speak, friend, and enter."
  */
 
-// ============================================================================
+
 // AI LaTeX Interpreter
-// ============================================================================
+
 
 const interpretToLatex = async (plaintext) => {
   try {
@@ -49,9 +49,9 @@ ${plaintext}`
   }
 };
 
-// ============================================================================
+
 // Git-Style Version Control
-// ============================================================================
+
 
 const createCommit = (snapshot, message, author = "You") => ({
   id: Date.now().toString(),
@@ -62,9 +62,9 @@ const createCommit = (snapshot, message, author = "You") => ({
   snapshot
 });
 
-// ============================================================================
+
 // Zettelkasten Utilities
-// ============================================================================
+
 
 const extractWikiLinks = (text) => {
   const pattern = /\[\[([^\]]+)\]\]/g;
@@ -94,9 +94,9 @@ const findBacklinks = (noteId, allNotes) => {
   return backlinks;
 };
 
-// ============================================================================
+
 // Main Application Component
-// ============================================================================
+
 
 const Mellon = () => {
   // Data state
@@ -122,9 +122,9 @@ const Mellon = () => {
   const editorRef = useRef(null);
   const saveTimeoutRef = useRef(null);
 
-  // ============================================================================
+  
   // Initialization
-  // ============================================================================
+  
 
   useEffect(() => {
     initializeWelcomeNote();
@@ -171,9 +171,9 @@ Your knowledge deserves better than folders. It deserves connections.`,
     }
   };
 
-  // ============================================================================
+  
   // Auto-save Logic
-  // ============================================================================
+  
 
   useEffect(() => {
     if (!currentNoteId) return;
@@ -206,9 +206,9 @@ Your knowledge deserves better than folders. It deserves connections.`,
     }));
   };
 
-  // ============================================================================
+  
   // LaTeX Processing
-  // ============================================================================
+  
 
   const processLatex = async () => {
     if (!noteContent.trim()) return;
@@ -235,9 +235,9 @@ Your knowledge deserves better than folders. It deserves connections.`,
     }
   }, [latexMode, noteContent]);
 
-  // ============================================================================
+  
   // Note Management
-  // ============================================================================
+  
 
   const createNewNote = () => {
     const noteId = `note-${Date.now()}`;
@@ -293,9 +293,9 @@ Your knowledge deserves better than folders. It deserves connections.`,
     setNoteContent('');
   };
 
-  // ============================================================================
+  
   // Git Operations
-  // ============================================================================
+  
 
   const commitCurrentState = () => {
     if (!commitMsg.trim()) {
@@ -334,9 +334,9 @@ Your knowledge deserves better than folders. It deserves connections.`,
     setNoteContent('');
   };
 
-  // ============================================================================
+  
   // Search & Navigation
-  // ============================================================================
+  
 
   const searchNotes = () => {
     if (!searchTerm.trim()) return Object.values(notes);
@@ -380,9 +380,9 @@ Your knowledge deserves better than folders. It deserves connections.`,
     }
   };
 
-  // ============================================================================
+  
   // Render Utilities
-  // ============================================================================
+  
 
   const renderPreview = () => {
     let html = noteContent;
@@ -411,9 +411,9 @@ Your knowledge deserves better than folders. It deserves connections.`,
   const backlinks = currentNoteId ? findBacklinks(currentNoteId, notes) : [];
   const wikiLinks = currentNote ? extractWikiLinks(currentNote.content) : [];
 
-  // ============================================================================
+  
   // Render
-  // ============================================================================
+  
 
   return (
     <div className="h-screen w-screen bg-gray-900 flex overflow-hidden">
